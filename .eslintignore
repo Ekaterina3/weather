@@ -1,0 +1,3 @@
+frontend/scripts/**/vendor/*
+public_html/*
+node_modules/*

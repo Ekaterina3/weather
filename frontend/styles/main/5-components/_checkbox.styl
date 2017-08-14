@@ -1,0 +1,78 @@
+$chx-sizes = {
+	width: 20px,
+	height: 20px,
+}
+$chx-coords = {
+	x: 0,
+	y: 0,
+}
+$chx-inactive = {
+	border-color: get-color('base6'),
+}
+$chx-active = {
+	background: get-color('base2'),
+	border-color: get-color('base2'),
+}
+$chx-tick-color = get-color('base3')
+
+$root = '.c-checkbox'
+
+{$root}
+	position relative
+	display inline-block
+
+	&__native
+		position absolute
+		top: $chx-coords.y
+		left: $chx-coords.x
+		z-index -1
+		margin 0
+		padding 0
+		border none
+		width: $chx-sizes.width
+		height: $chx-sizes.height
+		opacity 0
+
+		&:checked + {$root}__label {$root}__control
+			border-color: $chx-active.border-color
+			background: $chx-active.background
+
+		&:checked + {$root}__label {$root}__control:before,
+		&:checked + {$root}__label {$root}__control:after
+			content ''
+
+	&__control
+		position absolute
+		top: $chx-coords.y
+		left: $chx-coords.x
+		z-index 5
+		width: $chx-sizes.width
+		height: $chx-sizes.height
+		border: 1px solid $chx-inactive.border-color
+		border-radius 2px
+		transition background .1s linear, border-color .1s linear
+
+		&:before,
+		&:after
+			position absolute
+			height 2px
+			background $chx-tick-color
+			border-radius 10px
+
+		&:before
+			top: 55%
+			left 8%
+			width 50%
+			transform rotate(50deg)
+
+		&:after
+			top 48%
+			left 30%
+			width 70%
+			transform rotate(-52deg)
+
+	&__label
+		display inline-block
+		margin-left 35px
+		padding-top 3px
+		cursor pointer

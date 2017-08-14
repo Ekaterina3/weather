@@ -1,0 +1,185 @@
+.slick-slider
+	position relative
+	display block
+	box-sizing border-box
+	user-select none
+	user-select none
+	touch-callout none
+	touch-action pan-y
+	touch-action pan-y
+	tap-highlight-color transparent
+
+.slick-list
+	position relative
+	display block
+	overflow hidden
+	margin 0
+	padding 0
+	&:focus
+		outline none
+	&.dragging
+		cursor pointer
+		cursor hand
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+	transform translate3d(0, 0, 0)
+	transform translate3d(0, 0, 0)
+
+.slick-track
+	position relative
+	top 0
+	left 0
+	display block
+	&:after
+		clear both
+
+.slick-track:before,
+.slick-track:after
+	display table
+	content ''
+
+.slick-loading
+	.slick-track
+		visibility hidden
+	.slick-slide
+		visibility hidden
+
+.slick-slide
+	display none
+	float left
+	height 100%
+	min-height 1px
+	img
+		display block
+	&.slick-loading
+		img
+			display none
+	&.dragging
+		img
+			pointer-events none
+
+[dir='rtl']
+	.slick-slide
+		float right
+
+.slick-initialized
+	.slick-slide
+		display block
+
+.slick-vertical
+	.slick-slide
+		display block
+		height auto
+		border 1px solid transparent
+
+.slick-arrow
+	&.slick-hidden
+		display none
+
+
+// Переопределение базовых стилей slick на кастомные
+
+.slick-arrow
+	&:focus
+		outline none
+
+.slick-prev
+	position absolute
+	display block
+	width 20px
+	height 35px
+	border none
+	background none
+	text-indent -9990px
+	cursor pointer
+
+	&:before
+		content ''
+		position absolute
+		left 2px
+		top 11px
+		width 18px
+		height 3px
+		background get-color('additional12')
+		transform rotate(-45deg)
+
+	&:after
+		content ''
+		position absolute
+		left 2px
+		top 22px
+		width 18px
+		height 3px
+		background get-color('additional12')
+		transform rotate(45deg)
+
+.slick-next
+	position absolute
+	display block
+	width 20px
+	height 35px
+	border none
+	background none
+	text-indent -9990px
+	cursor pointer
+
+	&:before
+		content ''
+		position absolute
+		left 2px
+		top 11px
+		width 18px
+		height 3px
+		background get-color('additional12')
+		transform rotate(45deg)
+
+	&:after
+		content ''
+		position absolute
+		left 2px
+		top 22px
+		width 18px
+		height 3px
+		background get-color('additional12')
+		transform rotate(-45deg)
+
+.slick-dots
+	min-height 30px
+	padding-left 0
+	line-height 30px
+	list-style none
+	text-align center
+
+	& li
+		display inline-block
+		vertical-align middle
+		margin-right 16px
+
+		&:last-child
+			margin-right 0
+
+		& button
+			-webkit-appearance none
+			box-sizing border-box
+			width 15px
+			height 15px
+			padding 0
+			border 1px solid #acbbc1
+			border-radius 100%
+			background get-color('base3')
+			text-indent -9990px
+			cursor pointer
+
+			&:hover
+				width 15px
+				height 15px
+				background: get-color('base2')
+				border 1px solid get-color('base2')
+
+			&:focus
+				outline none
+
+		&.slick-active button
+			border 1px solid get-color('base2')
+			background get-color('base2')

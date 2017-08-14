@@ -1,0 +1,40 @@
+{{#extend 'stylus'}}
+{{#content 'sprites' mode='replace'}}
+$map-sprites = {
+	'path': {
+		'normal': '{{spritesheet.escaped_image}}'
+		'retina': '{{retina_spritesheet.escaped_image}}'
+	},
+	'styles': {
+		{{#each retina_groups}}
+		'{{name}}': {
+			'normal': @block {
+				width: {{normal.px.width}}
+				height: {{normal.px.height}}
+				background-position: {{normal.px.offset_x}} {{normal.px.offset_y}}
+			},
+			'retina': @block {
+				width: {{retina.px.width}}
+				height: {{retina.px.height}}
+				background-position: {{retina.px.offset_x}} {{retina.px.offset_y}}
+			},
+		},
+		{{/each}}
+	},
+};
+{{/content}}
+
+{{!-- Disable --}}
+{{#content 'sprites-comment' mode='replace'}}
+{{/content}}
+{{#content 'spritesheet' mode='replace'}}
+{{/content}}
+{{#content 'sprite-functions-comment' mode='replace'}}
+{{/content}}
+{{#content 'sprite-functions' mode='replace'}}
+{{/content}}
+{{#content 'spritesheet-functions-comment' mode='replace'}}
+{{/content}}
+{{#content 'spritesheet-functions' mode='replace'}}
+{{/content}}
+{{/extend}}

@@ -1,0 +1,23 @@
+/**
+ * rupture подключается в task/styles
+ *
+ * Документация:
+ * http://jescalan.github.io/rupture/
+ */
+
+// кастомизация
+rupture = {
+	rasterise-media-queries : false,
+	mobile-cutoff           : $map-media.xs,
+	desktop-cutoff          : $map-media.lg,
+	hd-cutoff               : $map-media.retina,
+	enable-em-breakpoints   : false,
+	base-font-size          : $map-fs.base,
+	anti-overlap            : false,
+	density-queries         : 'dppx' 'webkit' 'moz' 'dpi',
+	retina-density          : 1.5,
+	use-device-width        : false
+}
+
+rupture.scale = 0 ($map-media.xxxs) ($map-media.xxs) ($map-media.xs) ($map-media.md) ($map-media.lg) ($map-media.desk) ($map-media.retina)
+rupture.scale-names = 'default' 'xxxs' 'xxs' 'xs' 'md' 'lg' 'desk' 'retina'

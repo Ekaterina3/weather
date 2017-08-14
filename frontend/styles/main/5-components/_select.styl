@@ -1,0 +1,24 @@
+/**
+ * Основная стилизация идет в 1-vendor/select2
+ *
+ * Модификаторы для select2 можно поставить через data атрибуты у нативного select'а:
+ * data-container-css-class - для select2-selection
+ * data-dropdown-css-class - для select2-dropdown
+ *
+ * Для названия модификаторов стоит использовать пространство имен самой библиотеки (префикс 'select2'),
+ * а описывать в этом файле.
+ *
+ * Пример:
+ * <div class="c-select">
+ *   <select class="c-select__native" data-container-css-class="select2-selection--darker">
+ *     ...
+ *   </select>
+ * </div>
+ */
+.c-select
+	position relative
+
+	&__native
+		width 100%
+
+	// Здесь ваши модификаторы

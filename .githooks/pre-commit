@@ -1,0 +1,17 @@
+#!/bin/bash
+
+die() {
+  ./node_modules/.bin/notify -s Sosumi -t "pre-commit" -m "Fix errors above before commiting"
+  echo -en "\n\033[37;1;41m Fix errors above before commiting \033[0m\n\n" 1>&2 ;
+  exit 1;
+}
+
+npm run lint:styles
+if [ "$?" -ne 0 ]; then
+  die;
+fi
+
+npm run lint:scripts
+if [ "$?" -ne 0 ]; then
+  die;
+fi

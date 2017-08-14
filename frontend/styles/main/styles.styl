@@ -1,0 +1,28 @@
+@import '0-helpers/_index.styl'
+@import '1-vendor/_index.styl'
+@import '2-base/_index.styl'
+@import '3-layout/_index.styl'
+@import '4-modules/_index.styl'
+@import '5-components/_index.styl'
+@import '1-vendor/_animate.css'
+@import '2-base/_animations.styl'
+
+.progress {
+    position: relative;
+    width: 400px;
+    border: 1px solid #ddd;
+    padding: 1px;
+    border-radius: 3px;
+}
+.bar {
+    background-color: #B4F5B4;
+    width: 0%;
+    height: 20px;
+    border-radius: 3px;
+}
+.percent {
+    position: absolute;
+    display: inline-block;
+    top: 3px;
+    left: 48%;
+}

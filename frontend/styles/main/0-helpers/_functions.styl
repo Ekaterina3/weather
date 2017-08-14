@@ -1,0 +1,119 @@
+/**
+ * Возвращает цвет из хэша $map-color. К примеру,
+ * $map-color = { base: #000, link: { base: #fff } }
+ * get-color('base') -> #000
+ * get-color('base', 'link') -> #fff
+ *
+ * @param {string} $name название цвета
+ * @param {string} $type опционально подмассив, к примеру link
+ * @return {string} цвет
+ */
+get-color($name, $type = '')
+	if $type is ''
+		$map-color[$name]
+	else
+		$type-map = $map-color[$type]
+		$type-map[$name]
+
+/**
+ * Возвращает размер шрифта из хэша $map-fs. К примеру,
+ * $map-fs = { base: 16px, link: { base: 14px } }
+ * get-fz('base') -> 16px
+ * get-fz('base', 'link') -> 14px
+ *
+ * @param {string} $name название размера шрифта
+ * @param {string} $type опционально подмассив, к примеру link
+ * @return {string} цвет
+ */
+get-fs($name, $type = '')
+	if $type is ''
+		$map-fs[$name]
+	else
+		$type-map = $map-fs[$type]
+		$type-map[$name]
+
+/**
+ * Возвращает шрифт из хэша $map-ff. К примеру,
+ * $map-ff = { base: 'Calibri', link: { base: 'Arial' } }
+ * get-ff('base') -> 'Calibri'
+ * get-ff('base', 'link') -> 'Arial'
+ *
+ * @param {string} $name название шрифта
+ * @param {string} $type опционально подмассив, к примеру link
+ * @return {string} цвет
+ */
+get-ff($name, $type = '')
+	if $type is ''
+		$map-ff[$name]
+	else
+		$type-map = $map-ff[$type]
+		$type-map[$name]
+
+get-media($name)
+	$map-media[$name]
+
+/*
+// Input
+.features-item
+	sprite-img() // or sprite-img('normal')
+
+// Output
+.features-item {
+	background-image: url('../../sprites.main.png)
+}
+
+// Input
+.features-item
+	sprite-img('retina')
+
+// Output
+.features-item {
+	background-image: url('../../sprites@2x.main.png)
+}
+*/
+sprite-img($type = 'normal') {
+	background-image: url('../../' + $map-sprites['path'][$type])
+}
+
+/*
+The `sprite-styles` mixin sets up rules and a media query for a sprite/retina sprite.
+
+The media query is from CSS Tricks: https://css-tricks.com/snippets/css/retina-display-media-query/
+
+// Input
+.features-item
+	sprite-styles('power')
+
+// Output
+.features-item {
+  width: <width>px;
+  height: <height>px;
+  background-position: -<x>px <y>px;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .features-item {
+    width: <width>px;
+    height: <width>px;
+    background-position: -<x>px <y>px;
+  }
+}
+*/
+sprite-styles($name, $retina = true, $path = false)
+	$sprite = $map-sprites['styles'][$name]
+	$type = 'normal'
+	$normal = $sprite[$type]
+
+	{$normal}
+
+	if $path
+		sprite-img($type)
+
+	if $retina
+		$type = 'retina'
+		$retina = $sprite[$type]
+
+		@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi)
+			{$retina}
+
+			if $path
+				sprite-img($type)

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<title>{{ title }}</title>
+		<meta name="format-detection" content="telephone=no"/>
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+		<link rel="stylesheet" href="/assets/css/styleguide.css"/>
+	</head>
+	<body>
+		<a href="/static/" class="back">Назад</a>
+		{% block frame %}
+			<div class="g-frame">
+				<p class="g-frame__title">1024px</p>
+				<iframe src="block.html" width="1024" height="600" frameborder="0" class="g-frame__box"></iframe>
+			</div>
+			<div class="g-frame">
+				<p class="g-frame__title">600px</p>
+				<iframe src="block.html" width="600" height="600" frameborder="0" class="g-frame__box"></iframe>
+			</div>
+			<div class="g-frame">
+				<p class="g-frame__title">320px</p>
+				<iframe src="block.html" width="320" height="600" frameborder="0" class="g-frame__box"></iframe>
+			</div>
+		{% endblock %}
+	</body>
+</html>
+
+

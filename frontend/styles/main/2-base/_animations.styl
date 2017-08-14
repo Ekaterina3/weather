@@ -1,0 +1,75 @@
+@keyframes search-open {
+	0% {
+		right 90px
+		width 30%
+	}
+
+	100% {
+		right 0
+		width 100%
+	}
+}
+
+@keyframes search-close {
+	0% {
+		right 0px
+		z-index 20
+		width 100%
+		opacity 1
+	}
+
+	99% {
+		right 90px
+		z-index 20
+		width 30%
+		opacity 1
+	}
+
+	100% {
+		z-index 0
+		opacity 0
+	}
+}
+
+@keyframes search-icon-open {
+	0% {
+		transform rotate(0deg)
+	}
+
+	100% {
+		transform rotate(-90deg)
+	}
+}
+
+@keyframes search-icon-close {
+	0% {
+		transform rotate(-90deg)
+	}
+
+	100% {
+		transform rotate(0deg)
+	}
+}
+
+@keyframes shake {
+	0%, 100% {
+		transform translate3d(0, 0, 0)
+	}
+
+	15%, 45%, 75% {
+		transform translate3d(-10px, 0, 0)
+	}
+
+	30%, 60%, 90% {
+		transform translate3d(10px, 0, 0)
+	}
+}
+
+@keyframes stearing-motion {
+	0% {
+		transform rotate(-15deg)
+	}
+	100% {
+		transform rotate(15deg)
+	}
+}

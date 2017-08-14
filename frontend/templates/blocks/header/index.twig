@@ -1,0 +1,15 @@
+{% extends '../layouts/_layout.twig' %}
+{% block frame %}
+	<div class="g-frame">
+		<p class="g-frame__title">1024px</p>
+		<iframe src="block.html" width="1024" height="600" frameborder="0" class="g-frame__box"></iframe>
+	</div>
+	<div class="g-frame">
+		<p class="g-frame__title">600px</p>
+		<iframe src="block.html" width="600" height="600" frameborder="0" class="g-frame__box"></iframe>
+	</div>
+	<div class="g-frame">
+		<p class="g-frame__title">320px</p>
+		<iframe src="block.html" width="320" height="600" frameborder="0" class="g-frame__box"></iframe>
+	</div>
+{% endblock %}

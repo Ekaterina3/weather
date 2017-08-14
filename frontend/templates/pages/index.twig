@@ -1,0 +1,34 @@
+{% extends './layouts/_layout.twig' %}
+
+{% block content %}
+	<section class="js-weather">
+		<span>Выберите город</span>
+		<form action="/results" method="post" class="js-search">
+			<input class="js-find-city" type="text" requierd>
+			<button>Добавить</button>
+			<span class="js-error-msg"></span>
+		</form>
+
+		<button class="js-delete-all" type="button" style="display: none">Очистить список</button>
+
+		<div id="results"></div>
+
+	</section>
+	<script id="entry-template" type="text/x-handlebars-template">
+		{% verbatim %}
+			<div class="js-city">
+				<b> {{ nameRus }} </b>
+				<div>Температура: {{ main.temp }} <sup>o</sup>C</div>
+				<div>Влажность: {{ main.humidity }} %</div>
+				<div>Давление: {{ main.pressure }} hPa</div>
+				<div>Ветер: {{ wind.speed }} м/с</div>
+				<div>{{ weather.0.description }} <img alt="{{ weather.0.main }}" src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png"></div>
+				<button class="js-delete-city" type="button">Удалить город</button>
+				<br>
+				<br>
+			</div>
+		{% endverbatim %}
+	</script>
+
+
+{% endblock %}

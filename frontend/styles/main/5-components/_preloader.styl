@@ -1,0 +1,39 @@
+$root = '.c-preloader'
+
+{$root}
+	transition visibility 0s ease .2s, opacity ease .2s
+	transition-delay 0s
+
+	// Состояния
+	&.is-hidden
+		display none
+
+	&.is-open
+		{$root}__spinner
+			animation stearing-motion .33s linear infinite alternate
+
+	&.is-invisible
+		opacity 0
+		visibility hidden
+		transition visibility 0s ease .2s, opacity ease .2s
+
+	// Модификаторы
+	&--global
+		position fixed
+		top 0
+		right 0
+		bottom 0
+		left 0
+		z-index 10000
+		background rgba(get-color('base'), .6)
+
+		{$root}__spinner
+			position absolute
+			top 0
+			right 0
+			bottom 0
+			left 0
+			margin auto
+			width 70px
+			height auto
+			fill get-color('base3')
