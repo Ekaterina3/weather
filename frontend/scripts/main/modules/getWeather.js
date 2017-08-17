@@ -1,38 +1,56 @@
 module.exports = (function () {
-
+	var KEY = 'be1201b52467e1bb7a14fe4e8eff3007';
+	var Handlebars = require('handlebars/dist/handlebars');
 	var $resultsContainer = $('#results');
 	var $deleteBtn = $('.js-delete-all');
 	var $search = $('.js-search');
 	var $citiesList;
+	var html;
+	var context;
 
-	var checkLocalStorage = function () {
+	var isEmptyLocalStorage = function () {
 		var $savedCities = localStorage.getItem('cities');
 
 		if (!($savedCities === null && $.isEmptyObject($savedCities))) {
-			$resultsContainer.html($savedCities);
-			$deleteBtn.show();
+			$citiesList = JSON.parse(localStorage.cities);;
+			return true
+		} else {
+			$citiesList = [];
+			return false
+		}
+	};
+
+	var checkLocalStorage = function () {
+		if (isEmptyLocalStorage()) {
+			updateWeather();
 		}
 	};
 
 	var addToLocalStorage = function ($elem) {
-		localStorage.setItem('cities', $elem);
+		localStorage.setItem('cities', JSON.stringify($elem));
 	};
 
 	var clearLocalStorage = function () {
 		localStorage.removeItem('cities');
 	};
 
-	var updateCitiesList = function () {
-		$citiesList = $resultsContainer.html();
+	var updateCitiesList = function (id) {
+		if (id !== undefined) {
+
+			$citiesList = $.grep($citiesList, function(value) {
+				return value !== id;
+			});
+
+		} else {
+			$citiesList.push(context.id);
+		}
+
 		addToLocalStorage($citiesList);
 	};
 
 	var addCity = function ($elem) {
-		var KEY = 'be1201b52467e1bb7a14fe4e8eff3007';
-		var Handlebars = require('handlebars/dist/handlebars');
 		var $source   = $('#entry-template').html();
 		var template = Handlebars.compile($source);
-		var html;
 		var $error = $elem.find('.js-error-msg');
 		var $field = $elem.find('.js-find-city');
 
@@ -47,9 +65,8 @@ module.exports = (function () {
 				method: 'post',
 				type: 'post',
 				success: function (response) {
-					var context = response;
+					context = response;
 
-					context.nameRus = $city[0].toUpperCase() + $city.substring(1);
 					html    = template(context);
 					$resultsContainer.append(html);
 					$field.val('').blur();
@@ -65,6 +82,25 @@ module.exports = (function () {
 		});
 	};
 
+	var updateWeather = function () {
+		var $source   = $('#entry-template-2').html();
+		var template = Handlebars.compile($source);
+		var $cities = JSON.parse(localStorage.cities);
+		var url = '//api.openweathermap.org/data/2.5/group?id=' + $cities + '&units=metric&lang=ru&APPID=' + KEY;
+
+			$.ajax({
+				url: url,
+				method: 'post',
+				type: 'post',
+				success: function (response) {
+					context = response;
+					html    = template(context);
+					$resultsContainer.append(html);
+					$deleteBtn.show();
+				}
+			});
+	};
+
 	var onAllCitiesRemoved = function () {
 		$deleteBtn.hide();
 		clearLocalStorage();
@@ -74,9 +110,11 @@ module.exports = (function () {
 		$(document).on('click', '.js-delete-city', function () {
 			var $this = $(this);
 			var $curCity = $this.closest('.js-city');
+			var $curCityId = $curCity.data('id');
 
 			$curCity.remove();
-			updateCitiesList();
+
+			updateCitiesList($curCityId);
 
 			if (!$('.js-city').length > 0) {
 				onAllCitiesRemoved();
