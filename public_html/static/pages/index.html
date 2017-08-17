@@ -20,7 +20,7 @@
 			<section class="js-weather">
 		<span>Выберите город</span>
 		<form action="/results" method="post" class="js-search">
-			<input class="js-find-city" type="text" requierd>
+			<input class="js-find-city" type="text" required>
 			<button>Добавить</button>
 			<span class="js-error-msg"></span>
 		</form>
@@ -31,17 +31,33 @@
 
 	</section>
 	<script id="entry-template" type="text/x-handlebars-template">
-		<div class="js-city">
-				<b> {{ nameRus }} </b>
-				<div>Температура: {{ main.temp }} <sup>o</sup>C</div>
-				<div>Влажность: {{ main.humidity }} %</div>
-				<div>Давление: {{ main.pressure }} hPa</div>
-				<div>Ветер: {{ wind.speed }} м/с</div>
-				<div>{{ weather.0.description }} <img alt="{{ weather.0.main }}" src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png"></div>
-				<button class="js-delete-city" type="button">Удалить город</button>
-				<br>
-				<br>
-			</div>
+		<div class="js-city" data-id="{{ id }}">
+					<b> {{ name }} </b>
+					<div>Температура: {{ main.temp }} <sup>o</sup>C</div>
+					<div>Влажность: {{ main.humidity }} %</div>
+					<div>Давление: {{ main.pressure }} hPa</div>
+					<div>Ветер: {{ wind.speed }} м/с</div>
+					<div>{{ weather.0.description }} <img alt="{{ weather.0.main }}" src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png"></div>
+					<button class="js-delete-city" type="button">Удалить город</button>
+					<br>
+					<br>
+				</div>
+	</script>
+
+	<script id="entry-template-2" type="text/x-handlebars-template">
+		{{#each list}}
+				<div class="js-city" data-id="{{ id }}">
+					<b> {{ name }} </b>
+					<div>Температура: {{ main.temp }} <sup>o</sup>C</div>
+					<div>Влажность: {{ main.humidity }} %</div>
+					<div>Давление: {{ main.pressure }} hPa</div>
+					<div>Ветер: {{ wind.speed }} м/с</div>
+					<div>{{ weather.0.description }} <img alt="{{ weather.0.main }}" src="http://openweathermap.org/img/w/{{ weather.0.icon }}.png"></div>
+					<button class="js-delete-city" type="button">Удалить город</button>
+					<br>
+					<br>
+				</div>
+			{{/each}}
 	</script>
 
 
