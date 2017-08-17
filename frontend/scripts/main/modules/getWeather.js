@@ -61,7 +61,7 @@ module.exports = (function () {
 			var $city = $field.val();
 
 			$.ajax({
-				url: '//api.openweathermap.org/data/2.5/weather?q=' + $city + '?id=524901&units=metric&lang=ru&APPID=' + KEY,
+				url: 'https://api.openweathermap.org/data/2.5/weather?q=' + $city + '?id=524901&units=metric&lang=ru&APPID=' + KEY,
 				method: 'post',
 				type: 'post',
 				success: function (response) {
@@ -86,7 +86,7 @@ module.exports = (function () {
 		var $source   = $('#entry-template-2').html();
 		var template = Handlebars.compile($source);
 		var $cities = JSON.parse(localStorage.cities);
-		var url = '//api.openweathermap.org/data/2.5/group?id=' + $cities + '&units=metric&lang=ru&APPID=' + KEY;
+		var url = 'https://api.openweathermap.org/data/2.5/group?id=' + $cities + '&units=metric&lang=ru&APPID=' + KEY;
 
 			$.ajax({
 				url: url,
